@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html data-theme="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>QuickDownload - A blazingly fast music downloader for YouTube</title>
+  </head>
+
+  <body class="select-none">
+    <div class="text-center bg-zinc-900 justify-center items-center h-screen w-screen flex mx-auto">
+      <div class="text-white">
+        <h1 class="text-3xl font-bold">QuickDownloader</h1>
+        <br class="mx-auto p-2" />
+        <input spellcheck="false" class="p-1 m-2 text-2xl font-mono focus:ring text-black ring-blue-500 rounded transition-all duration-300 border shadow-inner outline-none" type="text" id="url" placeholder="YouTube URL" />
+        <br />
+        <input spellcheck="false" class="p-1 m-2 focus:ring font-mono rounded text-black transition-all duration-300 ring-blue-500 text-2xl border shadow-inner outline-none" type="text" id="fileName" placeholder="Filename" />
+        <br />
+
+        <div class="p-1">
+        <div class="flex items-center justify-center w-full">
+          <label class="flex flex-col rounded w-full border-4 p-2 bg-black text-white focus:outline-none hover:bg-gray-700 transition-all duration-500">
+            <div class="flex items-center justify-center h-full rounded">
+              <div class="text-sm tracking-wider text-gray-400 group-hover:text-gray-600 p-2 rounded w-100 h-100" id="directorySelect">Select Directory</div>
+            </div>
+          </label>
+        </div>
+
+
+        <select class="p-2 mb-2 mt-2 bg-gray-800 text-white focus:outline-none hover:bg-gray-700 transition-all duration-500 rounded" id="qualitySelector">
+          <option value="highest">Highest</option>
+          <option value="lowest">Lowest</option>
+          <option value="highestaudio">Highest Audio</option>
+          <option value="lowestaudio">Lowest Audio</option>
+          <option value="highestvideo">Highest Video</option>
+          <option value="lowestvideo">Lowest Video</option>
+        </select>
+        
+        <select class="p-2 mb-2 mt-2 bg-gray-800 text-white focus:outline-none hover:bg-gray-700 transition-all duration-500 rounded" id="exportTypeSelector">
+          <option value="mp4">MP4</option>
+        </select>
+        
+
+        <br />
+        <div class="d-flex">
+          <button class="p-2 bg-blue-600 text-white focus:outline-none hover:bg-blue-700 transition-all duration-500 rounded" onclick="downloadVideoQueue()">Download</button>
+          <button class="p-2 bg-red-600 text-white focus:outline-none hover:bg-red-700 transition-all duration-500 rounded" onclick="cleanQueue()">Clean Queue</button>
+        </div>
+        <br />
+        <div style="opacity: 0;display: none;" id="downloadProgressDiv">
+          <p class="font-bold">Video download progress: <span class="font-mono text-black bg-gray-200 p-1" id="downloadProgressTwo">0%</span></p>
+          <div class="text-black bg-gray-200 mx-auto h-2.5 dark:bg-gray-700 m-2 rounded-3xl overflow-hidden">
+            <div id="downloadProgress" class="transition-all bg-blue-600 h-2.5" style="width: 0%"></div>
+          </div>
+          <ins onclick="openVideosFolder()" class="hover:underline cursor-pointer text-green-500 mb-2" id="done"></ins>
+          
+          <code id="info" class="text-blue-400 mt-2 mb-2"></code>
+          
+          <code id="error" class="text-rose-500 mt-2 mb-2"></code>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/downloader.js"></script>
+  </body>
+</html>
